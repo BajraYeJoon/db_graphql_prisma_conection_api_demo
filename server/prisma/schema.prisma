@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Recipe {
+  id          String @id @default(uuid()) @map("_id")
+  description String
+  title       String
+}
+
+model RecipeInstruction {
+  id           String  @id @default(uuid()) @map("_id")
+  title        String
+  instructions String
+  isDifficult  Boolean
+  recipeId     String
+}
+
+model Ingredients {
+  id       String @id @default(uuid()) @map("_id")
+  name     String
+  quantity String
+
+  recipeId String
+}
+
+model RecipeReview {
+  id       String @id @default(uuid()) @map("_id")
+  recipeId String
+  rating   Int
+  comment  String
+  date     String
+  userId   String
+}
+
+enum DietaryRestrictions {
+  VEGETARIAN
+  NON_VEGETARIAN
+}
