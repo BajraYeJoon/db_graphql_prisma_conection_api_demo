@@ -1,4 +1,4 @@
-const { prisma } = require("./db.js");
+const { prisma } = require("../db.js");
 
 const resolvers = {
   Query: {
@@ -7,11 +7,12 @@ const resolvers = {
     },
   },
   Mutation: {
-    addRecipe: async (_parent: any, args: { title: any; description: any }) => {
+    addRecipe: async (_parent, args) => {
+      const { title, description } = args;
       const recipe = await prisma.recipe.create({
         data: {
-          title: args.title,
-          description: args.description,
+          title: title,
+          description: description,
         },
       });
 
@@ -20,4 +21,4 @@ const resolvers = {
   },
 };
 
-export default resolvers;
+export { resolvers };

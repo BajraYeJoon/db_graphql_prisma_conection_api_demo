@@ -1,4 +1,7 @@
-const { gql } = require(`apollo-server`);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.typeDefs = void 0;
+const { gql } = require("apollo-server");
 const typeDefs = gql `
   type Recipe {
     id: ID!
@@ -18,4 +21,4 @@ const typeDefs = gql `
     addRecipe(input: RecipeInput!): Recipe!
   }
 `;
-export default typeDefs;
+exports.typeDefs = typeDefs;
